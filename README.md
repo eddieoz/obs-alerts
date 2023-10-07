@@ -1,18 +1,63 @@
-Flask Socket.IO Example
-This is a simple Flask application that demonstrates how to use Flask Socket.IO to create a real-time communication between the client and server.
+# OBS Alerts Application
 
-Installation
-Clone the repository: git clone https://github.com/username/flask-socketio-example.git
-Install the dependencies: pip install -r requirements.txt
-Usage
-Start the server: python app.py
-Open a web browser and navigate to http://localhost:5000
-Click the "Trigger Alert" button to trigger an alert that will be displayed on the page.
-Code Overview
-The app.py file contains the Flask application code. It defines two routes: / and /trigger_alert. The / route renders the index.html template, which contains a button that triggers an alert when clicked. The /trigger_alert route handles the alert trigger by emitting a show_alert event with the alert data to the connected clients.
+This application provides real-time alerts for OBS through a simple web interface. It uses Flask and WebSockets to achieve real-time capabilities.
 
-The SocketIO class from the flask_socketio package is used to create a new instance of the Socket.IO server, which is bound to the Flask application instance. This allows the server to handle real-time communication between the client and server.
+## Features
 
-License
-This project is licensed under the MIT License. See the LICENSE file for details.
+- Receive a GET request to trigger alerts.
+- Show alerts on the OBS with user-defined parameters (e.g., image size, text font, size, color).
+- WebSockets for real-time updates.
 
+## Setup and Running
+
+### Prerequisites
+
+- Python 3.9+
+- Docker (for containerized deployment)
+
+### Local Development
+
+1. Clone the repository:
+   \```
+   git clone <repository-url>
+   cd <repository-dir>
+   \```
+
+2. Install the required packages:
+   \```
+   pip install -r requirements.txt
+   \```
+
+3. Run the application:
+   \```
+   python app.py
+   \```
+
+The application will be available at `http://localhost:5002`.
+
+### Deployment with Docker
+
+1. Build the Docker image:
+   \```
+   docker build -t flask-obs-app .
+   \```
+
+2. Run the Docker container:
+   \```
+   docker run -p 5002:5002 flask-obs-app
+   \```
+
+The application will be available at `http://localhost:5002`.
+
+## Usage
+
+1. To trigger an alert, send a GET request to the `/trigger` endpoint with the desired parameters. For example:
+   \```
+   http://localhost:5002/trigger?gif=<gif-url>&audio=<audio-url>&text=Hello&text_color=red&text_font_size=20px&image_width=50%
+   \```
+
+2. OBS will display the alert based on the parameters provided in the request.
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
