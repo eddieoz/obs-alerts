@@ -36,13 +36,14 @@ This application provides real-time alerts for OBS through a simple web interfac
 The application will be available at `http://localhost:5002`.
 
 ### Deployment with Docker
+1. Update `Dockerfile` and add an `API_KEY`
 
-1. Build the Docker image:
+2. Build the Docker image:
    ```
    docker build -t flask-obs-app .
    ```
 
-2. Run the Docker container:
+3. Run the Docker container:
    ```
    docker run -p 5002:5002 flask-obs-app
    ```
@@ -53,7 +54,7 @@ The application will be available at `http://localhost:5002`.
 
 1. To trigger an alert, send a GET request to the `/trigger` endpoint with the desired parameters. For example:
    ```
-   http://localhost:5002/trigger?gif=<gif-url>&audio=<audio-url>&text=Hello&text_color=red&text_font_size=20px&image_width=50%
+   http://localhost:5002/trigger?api_key=<API_KEY>&gif=<gif-url>&audio=<audio-url>&text=Hello&text_color=red&text_font_size=20px&image_width=50%
    ```
 
 2. OBS will display the alert based on the parameters provided in the request.
