@@ -50,7 +50,7 @@ def trigger_alert():
         # Check if data['amount'] exists
         if 'amount' in data:
             amount = int(data['amount']/1000)
-            text = f"Você recebeu <b>{amount} sats!</b>\n{''.join(data['comment'])}"
+            text = f"Você recebeu {amount} sats!\n{''.join(data['comment'])}"
             if amount >= 2100:
                 audio_url = f"https://api.streamelements.com/kappa/v2/speech?voice=Vitoria&text={data['comment']}"
         
