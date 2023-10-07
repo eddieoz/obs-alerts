@@ -54,11 +54,12 @@ def trigger_alert():
             if option == 0:
                 gif_url = "https://cdn.zebedee.io/streamer/images/d095a7bb-3d92-4775-9107-6401f8c52417_satoshi-red-socks-craig-wright.gif"
                 audio_url = unquote_plus('https://www.myinstants.com/media/sounds/cwisnotsatoshi.mp3')
+                width = '100%'
             else:
                 gif_url = "https://media1.giphy.com/media/l49JMVDvP8D38LHwI/giphy.gif"
                 audio_url = unquote_plus('https://www.myinstants.com/media/sounds/mrbitcoin.mp3')
+                width = '40%'
                 
-            
             if 'comment' in data:
                 if data['comment'] != '':
                     amount = int(data['amount']/1000)
