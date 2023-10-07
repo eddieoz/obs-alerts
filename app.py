@@ -5,6 +5,7 @@ import logging
 logging.basicConfig(level=logging.DEBUG)
 
 import json
+import random
 import os
 port = int(os.environ.get("PORT", 5002))
 api_key = os.environ.get("API_KEY", '')
@@ -32,7 +33,7 @@ def trigger_alert():
     if (not request.args.get('api_key') or request.args.get('api_key') != os.environ.get("API_KEY", '')):
         return "Invalid API key"
     gif_url = request.args.get('gif', 'https://media0.giphy.com/media/vKHKDIdvxvN7vTAEOM/giphy.gif')
-    audio_url = unquote_plus(request.args.get('audio', 'https://www.myinstants.com/en/instant/wow-mlg/?utm_source=copy&utm_medium=share'))
+    audio_url = unquote_plus(request.args.get('audio', 'https://www.myinstants.com/media/sounds/mrbitcoin.mp3'))
     text = request.args.get('text', '')
     width = request.args.get('width', '40%')
     height = request.args.get('height', '40%')
@@ -49,6 +50,14 @@ def trigger_alert():
         
         # Check if data['amount'] exists
         if 'amount' in data:
+            option = random.randint(0,1)
+            if option == 0:
+                gif_url = "https://cdn.zebedee.io/streamer/images/d095a7bb-3d92-4775-9107-6401f8c52417_satoshi-red-socks-craig-wright.gif"
+                audio_url = unquote_plus('https://www.myinstants.com/media/sounds/cwisnotsatoshi.mp3')
+            else:
+                gif_url = "https://media1.giphy.com/media/l49JMVDvP8D38LHwI/giphy.gif"
+                audio_url = unquote_plus('https://www.myinstants.com/media/sounds/mrbitcoin.mp3')
+                
             amount = int(data['amount']/1000)
             text = f"Você recebeu {amount} sats!\n{''.join(data['comment'])}"
             if amount >= 2100:
