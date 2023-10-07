@@ -15,7 +15,7 @@ EXPOSE 5002
 
 # Define environment variable to tell Flask to run on a specific port
 ENV FLASK_RUN_PORT=5002
-ENV API_KEY = "<INSERT YOUR API KEY HERE>"
+ENV API_KEY="<INSERT YOUR API KEY HERE>"
 
 # Run the application
 CMD ["python", "app.py"]
