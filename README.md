@@ -57,6 +57,21 @@ The application will be available at `http://localhost:5002`.
    http://localhost:5002/trigger?api_key=<API_KEY>&gif=<gif-url>&audio=<audio-url>&text=Hello&text_color=red&text_font_size=20px&image_width=50%
    ```
 
+Available parameters:
+```
+&api_key='YOUR_API_KEY'
+&gif_url='https://media0.giphy.com/media/vKHKDIdvxvN7vTAEOM/giphy.gif'
+&audio_url='https://www.myinstants.com/en/instant/wow-mlg/?utm_source=copy&utm_medium=share'
+&text='SAMPLE TEXT'
+&width='40%'
+&fontFamily='Arial'
+&fontSize='30px'
+&borderColor='black'
+&borderWidth='1px'
+&color='white'
+&duration=10000
+```
+
 2. OBS will display the alert based on the parameters provided in the request.
 
 ## Contributing
