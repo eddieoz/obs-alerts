@@ -25,16 +25,16 @@ def trigger_alert():
     """
     if (not request.args.get('api_key') or request.args.get('api_key') != os.environ.get("API_KEY", '')):
         return "Invalid API key"
-    gif_url = request.args.get('gif')
-    audio_url = unquote_plus(request.args.get('audio'))
-    text = request.args.get('text')
-    width = request.args.get('width')
-    height = request.args.get('height')
-    fontFamily = request.args.get('fontFamily')
-    fontSize = request.args.get('fontSize')
-    borderColor = request.args.get('borderColor')
+    gif_url = request.args.get('gif', 'https://media0.giphy.com/media/vKHKDIdvxvN7vTAEOM/giphy.gif')
+    audio_url = unquote_plus(request.args.get('audio', 'https://www.myinstants.com/en/instant/wow-mlg/?utm_source=copy&utm_medium=share'))
+    text = request.args.get('text', '')
+    width = request.args.get('width', '40%')
+    height = request.args.get('height', '40%')
+    fontFamily = request.args.get('fontFamily', 'Arial')
+    fontSize = request.args.get('fontSize', '30px')
+    borderColor = request.args.get('borderColor', 'black')
     borderWidth = request.args.get('borderWidth', '1px')  # Default to 1px if not provided
-    color = request.args.get('color')
+    color = request.args.get('color', 'white')
     duration = int(request.args.get('duration', 10000))  # Default to 10 seconds if not provided
 
     alert_data = {
