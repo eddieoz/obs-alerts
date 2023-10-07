@@ -60,10 +60,11 @@ def trigger_alert():
                 
             
             if 'comment' in data:
-                amount = int(data['amount']/1000)
-                if amount >= 2100:
-                    audio_url = f"https://api.streamelements.com/kappa/v2/speech?voice=Vitoria&text={data['comment']}"                
-                text = f"Você recebeu {amount} sats!\n{''.join(data['comment'])}"
+                if data['comment'] == '':
+                    amount = int(data['amount']/1000)
+                    if amount >= 2100:
+                        audio_url = f"https://api.streamelements.com/kappa/v2/speech?voice=Vitoria&text={data['comment']}"                
+                    text = f"Você recebeu {amount} sats!\n{''.join(data['comment'])}"
             
         # gif_url = data['gif']
         # width = data['width']
