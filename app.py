@@ -1,9 +1,11 @@
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO
 from urllib.parse import unquote_plus
+import os
+port = int(os.environ.get("PORT", 5000))
 
 app = Flask(__name__)
-socketio = SocketIO(app)
+socketio = SocketIO(app, async_mode='eventlet', cors_allowed_origins="*")
 
 @app.route('/')
 def index():

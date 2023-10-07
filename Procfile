@@ -1,1 +1,1 @@
-web: gunicorn --log-level=debug wsgi:app
+web: gunicorn app:app --worker-class eventlet --log-file -
