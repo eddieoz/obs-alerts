@@ -3,3 +3,4 @@ websockets==11.0.3
 eventlet
 flask
 flask_socketio
+gunicorn
