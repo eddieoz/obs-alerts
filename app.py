@@ -3,6 +3,7 @@ from flask_socketio import SocketIO
 from urllib.parse import unquote_plus
 import os
 port = int(os.environ.get("PORT", 5002))
+api_key = int(os.environ.get("API_KEY", ''))
 
 app = Flask(__name__)
 socketio = SocketIO(app, async_mode='eventlet', cors_allowed_origins="*")
@@ -22,6 +23,9 @@ def trigger_alert():
     Returns:
         str: A message indicating that the alert has been triggered.
     """
+    api_key = request.args.get('api_key')
+    if api_key != os.environ.get("API_KEY", ''):
+        return "Invalid API key"
     gif_url = request.args.get('gif')
     audio_url = unquote_plus(request.args.get('audio'))
     text = request.args.get('text')
