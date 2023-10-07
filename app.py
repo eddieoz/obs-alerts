@@ -44,16 +44,15 @@ def trigger_alert():
     duration = int(request.args.get('duration', 10000))  # Default to 10 seconds if not provided
 
     if request.method == 'POST':
-        logging.debug(request.json)
+        logging.debug(request.json.get('root'))
         # if (not request.json['api_key'] or request.json['api_key'] != os.environ.get("API_KEY", '')):
         #     return "Invalid API key"
         # # Get the alert data from the request body
-        # data = request.json
+        data = request.json['root']
         
         # gif_url = data['gif']
         # audio_url = data['audio']
-        # # text = data['text']
-        # text = json.dumps(request.json)
+        text = f"Você recebeu { data['amount']/100 } sats!<br />{''.join(data['comment'])}"
         # width = data['width']
         # height = data['height']
         # fontFamily = data['fontFamily']
