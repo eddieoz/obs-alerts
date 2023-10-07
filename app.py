@@ -15,7 +15,7 @@ def index():
     """
     return render_template('index.html')
 
-@app.route('/trigger_alert')
+@app.route('/trigger_alert', methods=['GET', 'POST'])
 def trigger_alert():
     """
     Triggers an alert by emitting a 'show_alert' event with the alert data to the connected clients.
@@ -37,7 +37,9 @@ def trigger_alert():
     color = request.args.get('color', 'white')
     duration = int(request.args.get('duration', 10000))  # Default to 10 seconds if not provided
 
-    print (request)
+    if request.method == 'POST':
+        data = request.json
+        print(data)
 
     alert_data = {
         "gif": gif_url,
