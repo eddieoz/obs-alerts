@@ -7,10 +7,19 @@ socketio = SocketIO(app)
 
 @app.route('/')
 def index():
+    """
+    Renders the index.html template when the root URL is accessed.
+    """
     return render_template('index.html')
 
 @app.route('/trigger_alert')
 def trigger_alert():
+    """
+    Triggers an alert by emitting a 'show_alert' event with the alert data to the connected clients.
+
+    Returns:
+        str: A message indicating that the alert has been triggered.
+    """
     gif_url = request.args.get('gif')
     audio_url = unquote_plus(request.args.get('audio'))
     text = request.args.get('text')
