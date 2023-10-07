@@ -58,13 +58,13 @@ def trigger_alert():
                 gif_url = "https://media1.giphy.com/media/l49JMVDvP8D38LHwI/giphy.gif"
                 audio_url = unquote_plus('https://www.myinstants.com/media/sounds/mrbitcoin.mp3')
                 
+            
             if 'comment' in data:
+                amount = int(data['amount']/1000)
+                if amount >= 2100:
+                    audio_url = f"https://api.streamelements.com/kappa/v2/speech?voice=Vitoria&text={data['comment']}"                
                 text = f"Você recebeu {amount} sats!\n{''.join(data['comment'])}"
             
-            amount = int(data['amount']/1000)
-            if amount >= 2100:
-                audio_url = f"https://api.streamelements.com/kappa/v2/speech?voice=Vitoria&text={data['comment']}"
-        
         # gif_url = data['gif']
         # width = data['width']
         # height = data['height']
