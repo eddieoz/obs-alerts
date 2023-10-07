@@ -37,8 +37,7 @@ def trigger_alert():
     color = request.args.get('color', 'white')
     duration = int(request.args.get('duration', 10000))  # Default to 10 seconds if not provided
 
-    if request.json:
-        print(request.json)
+    print (request)
 
     alert_data = {
         "gif": gif_url,
