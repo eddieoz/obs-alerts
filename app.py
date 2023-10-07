@@ -43,16 +43,18 @@ def trigger_alert():
     color = request.args.get('color', 'white')
     duration = int(request.args.get('duration', 10000))  # Default to 10 seconds if not provided
 
-    if request.method == 'POST':
-        logging.debug(request.json)
-        
+    if request.method == 'POST':        
         # # Get the alert data from the request body
         data = request.json
         
+        # Check if data['amount'] exists
+        if 'amount' not in data:
+            amount = int(data['amount']/1000)
+            text = f"Você recebeu <b>{amount} sats!</b>\n{''.join(data['comment'])}"
+            if amount > 2100:
+                audio_url = f"https://api.streamelements.com/kappa/v2/speech?voice=Vitoria&text={data['comment']}"
+        
         # gif_url = data['gif']
-        # audio_url = data['audio']
-        text = f"Você recebeu { int(data['amount']/1000) } sats!\n{''.join(data['comment'])}"
-        logging.debug(text)
         # width = data['width']
         # height = data['height']
         # fontFamily = data['fontFamily']
