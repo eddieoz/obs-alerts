@@ -51,7 +51,7 @@ def trigger_alert():
         
         # gif_url = data['gif']
         # audio_url = data['audio']
-        text = f"Você recebeu { data['amount']/100 } sats!<br />{''.join(data['comment'])}"
+        text = f"Você recebeu { int(data['amount']/1000) } sats!\n{''.join(data['comment'])}"
         logging.debug(text)
         # width = data['width']
         # height = data['height']
