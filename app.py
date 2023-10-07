@@ -24,7 +24,7 @@ def trigger_alert():
         str: A message indicating that the alert has been triggered.
     """
     api_key = request.args.get('api_key')
-    if api_key != os.environ.get("API_KEY", ''):
+    if (not request.args.get('api_key') or request.args.get('api_key') != os.environ.get("API_KEY", '')):
         return "Invalid API key"
     gif_url = request.args.get('gif')
     audio_url = unquote_plus(request.args.get('audio'))
