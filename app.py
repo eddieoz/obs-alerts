@@ -1,6 +1,9 @@
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO
 from urllib.parse import unquote_plus
+import logging
+logging.basicConfig(level=logging.DEBUG)
+
 import json
 import os
 port = int(os.environ.get("PORT", 5002))
@@ -41,7 +44,7 @@ def trigger_alert():
     duration = int(request.args.get('duration', 10000))  # Default to 10 seconds if not provided
 
     if request.method == 'POST':
-        print(request.json)
+        logging.debug(request.json)
         # if (not request.json['api_key'] or request.json['api_key'] != os.environ.get("API_KEY", '')):
         #     return "Invalid API key"
         # # Get the alert data from the request body
