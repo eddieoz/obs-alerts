@@ -24,40 +24,41 @@ def trigger_alert():
     Returns:
         str: A message indicating that the alert has been triggered.
     """
-    if request.method == 'GET':
+    # if request.method == 'GET':
     
-        if (not request.args.get('api_key') or request.args.get('api_key') != os.environ.get("API_KEY", '')):
-            return "Invalid API key"
-        gif_url = request.args.get('gif', 'https://media0.giphy.com/media/vKHKDIdvxvN7vTAEOM/giphy.gif')
-        audio_url = unquote_plus(request.args.get('audio', 'https://www.myinstants.com/en/instant/wow-mlg/?utm_source=copy&utm_medium=share'))
-        text = request.args.get('text', '')
-        width = request.args.get('width', '40%')
-        height = request.args.get('height', '40%')
-        fontFamily = request.args.get('fontFamily', 'Arial')
-        fontSize = request.args.get('fontSize', '30px')
-        borderColor = request.args.get('borderColor', 'black')
-        borderWidth = request.args.get('borderWidth', '1px')  # Default to 1px if not provided
-        color = request.args.get('color', 'white')
-        duration = int(request.args.get('duration', 10000))  # Default to 10 seconds if not provided
+    if (not request.args.get('api_key') or request.args.get('api_key') != os.environ.get("API_KEY", '')):
+        return "Invalid API key"
+    gif_url = request.args.get('gif', 'https://media0.giphy.com/media/vKHKDIdvxvN7vTAEOM/giphy.gif')
+    audio_url = unquote_plus(request.args.get('audio', 'https://www.myinstants.com/en/instant/wow-mlg/?utm_source=copy&utm_medium=share'))
+    text = request.args.get('text', '')
+    width = request.args.get('width', '40%')
+    height = request.args.get('height', '40%')
+    fontFamily = request.args.get('fontFamily', 'Arial')
+    fontSize = request.args.get('fontSize', '30px')
+    borderColor = request.args.get('borderColor', 'black')
+    borderWidth = request.args.get('borderWidth', '1px')  # Default to 1px if not provided
+    color = request.args.get('color', 'white')
+    duration = int(request.args.get('duration', 10000))  # Default to 10 seconds if not provided
 
-    elif request.method == 'POST':
-        if (not request.json['api_key'] or request.json['api_key'] != os.environ.get("API_KEY", '')):
-            return "Invalid API key"
-        # Get the alert data from the request body
-        data = request.json
+    if request.method == 'POST':
+        print(request.json)
+        # if (not request.json['api_key'] or request.json['api_key'] != os.environ.get("API_KEY", '')):
+        #     return "Invalid API key"
+        # # Get the alert data from the request body
+        # data = request.json
         
-        gif_url = data['gif']
-        audio_url = data['audio']
-        # text = data['text']
-        text = json.dumps(request.json)
-        width = data['width']
-        height = data['height']
-        fontFamily = data['fontFamily']
-        fontSize = data['fontSize']
-        borderColor = data['borderColor']
-        borderWidth = data['borderWidth']
-        color = data['color']
-        duration = data['duration']
+        # gif_url = data['gif']
+        # audio_url = data['audio']
+        # # text = data['text']
+        # text = json.dumps(request.json)
+        # width = data['width']
+        # height = data['height']
+        # fontFamily = data['fontFamily']
+        # fontSize = data['fontSize']
+        # borderColor = data['borderColor']
+        # borderWidth = data['borderWidth']
+        # color = data['color']
+        # duration = data['duration']
 
 
     alert_data = {
