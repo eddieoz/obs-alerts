@@ -34,7 +34,7 @@ def trigger_alert():
         return "Invalid API key"
     gif_url = request.args.get('gif', 'https://media0.giphy.com/media/vKHKDIdvxvN7vTAEOM/giphy.gif')
     audio_url = unquote_plus(request.args.get('audio', 'https://www.myinstants.com/media/sounds/mrbitcoin.mp3'))
-    text = request.args.get('text', '')
+    text = request.args.get('text', 'Hey!')
     width = request.args.get('width', '40%')
     height = request.args.get('height', '40%')
     fontFamily = request.args.get('fontFamily', 'Arial')
@@ -58,8 +58,10 @@ def trigger_alert():
                 gif_url = "https://media1.giphy.com/media/l49JMVDvP8D38LHwI/giphy.gif"
                 audio_url = unquote_plus('https://www.myinstants.com/media/sounds/mrbitcoin.mp3')
                 
+            if 'comment' in data:
+                text = f"Você recebeu {amount} sats!\n{''.join(data['comment'])}"
+            
             amount = int(data['amount']/1000)
-            text = f"Você recebeu {amount} sats!\n{''.join(data['comment'])}"
             if amount >= 2100:
                 audio_url = f"https://api.streamelements.com/kappa/v2/speech?voice=Vitoria&text={data['comment']}"
         
