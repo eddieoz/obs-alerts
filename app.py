@@ -3,7 +3,7 @@ from flask_socketio import SocketIO
 from urllib.parse import unquote_plus
 import os
 port = int(os.environ.get("PORT", 5002))
-api_key = int(os.environ.get("API_KEY", ''))
+api_key = os.environ.get("API_KEY", '')
 
 app = Flask(__name__)
 socketio = SocketIO(app, async_mode='eventlet', cors_allowed_origins="*")
