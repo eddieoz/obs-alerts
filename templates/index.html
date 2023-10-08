@@ -18,12 +18,15 @@
         }
     
         #alert-container {
-            text-align: center; /* Center inline elements like the image */
+            text-align: center; /* Center inline elements */
+            display: flex; /* Use flexbox for layout */
+            flex-direction: column; /* Stack children vertically */
+            align-items: center; /* Center children horizontally */
         }
         
         #gif {
+            width: auto; /* To maintain the aspect ratio */
             max-width: 100%; /* Ensure image doesn't exceed its container's width */
-            height: auto; /* Maintain aspect ratio */
             display: none; /* Initial state */
             animation: slideIn 1s forwards; /* Slide-in animation */
         }
