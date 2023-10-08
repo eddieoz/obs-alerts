@@ -48,7 +48,7 @@ def trigger_alert():
     if request.method == 'POST':        
         # Get the alert data from the request body
         data = request.json
-        
+        logging.debug(data)
         
         # LN Bits integration
         # Should have LNURLP working and register the callback URL
@@ -66,7 +66,7 @@ def trigger_alert():
                 width = '40%'
                 
             if 'comment' in data:
-                if data['comment'] != '':
+                if data['comment'] != None:
                     amount = int(data['amount']/1000)
                     if amount >= 2100:
                         audio_url = "https://www.myinstants.com/media/sounds/bitcoin-dono-mix.mp3"
