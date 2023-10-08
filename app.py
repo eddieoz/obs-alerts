@@ -17,7 +17,7 @@ socketio = SocketIO(app, async_mode='eventlet', cors_allowed_origins="*")
 def redirect_to_home():
     return redirect("https://eddieoz.com", code=302)
 
-@app.route('/obs_alerts')
+@app.route('/obs-alerts')
 def index():
     """
     Renders the index.html template when the root URL is accessed.
