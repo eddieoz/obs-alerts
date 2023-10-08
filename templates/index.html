@@ -33,11 +33,13 @@
         <div id="text" style="display: none;"></div>
     </div>
     <audio id="audio"></audio>
+    <audio id="tts"></audio>
     
 
     <script>
         const gifElement = document.getElementById('gif');
         const audioElement = document.getElementById('audio');
+        const ttsElement = document.getElementById('tts');
         const textElement = document.getElementById('text');
         const socket = io.connect();
 
@@ -46,6 +48,7 @@
 
             gifElement.src = data.gif;
             audioElement.src = data.audio;
+            ttsElement.src = data.tts;
             textElement.innerText = data.text;
 
             // Set image size
@@ -76,6 +79,9 @@
             gifElement.style.display = "block";
             textElement.style.display = "block";
             audioElement.play();
+            setTimeout(() => {
+                ttsElement.play();
+            }, 1500);
 
             setTimeout(() => {
                 gifElement.style.display = "none";

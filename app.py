@@ -35,6 +35,7 @@ def trigger_alert():
     gif_url = request.args.get('gif', 'https://media0.giphy.com/media/vKHKDIdvxvN7vTAEOM/giphy.gif')
     audio_url = unquote_plus(request.args.get('audio', 'https://www.myinstants.com/media/sounds/mrbitcoin.mp3'))
     text = request.args.get('text', 'Hey!')
+    tts = request.args.get('tts', '')
     width = request.args.get('width', '40%')
     height = request.args.get('height', '40%')
     fontFamily = request.args.get('fontFamily', 'Arial')
@@ -45,8 +46,12 @@ def trigger_alert():
     duration = int(request.args.get('duration', 10000))  # Default to 10 seconds if not provided
 
     if request.method == 'POST':        
-        # # Get the alert data from the request body
+        # Get the alert data from the request body
         data = request.json
+        
+        
+        # LN Bits integration
+        # Should have LNURLP working and register the callback URL
         
         # Check if data['amount'] exists
         if 'amount' in data:
@@ -64,8 +69,9 @@ def trigger_alert():
                 if data['comment'] != '':
                     amount = int(data['amount']/1000)
                     if amount >= 2100:
-                        audio_url = f"https://api.streamelements.com/kappa/v2/speech?voice=Vitoria&text={data['comment']}"                
-                    text = f"Você recebeu {amount} sats!\n{''.join(data['comment'])}"
+                        audio_url = "https://www.myinstants.com/media/sounds/bitcoin-dono-mix.mp3"
+                        tts = f"https://api.streamelements.com/kappa/v2/speech?voice=Vitoria&text={data['comment']}"             
+                    text = f"\nVocê recebeu {amount} sats!\n{''.join(data['comment'])}"
             
         # gif_url = data['gif']
         # width = data['width']
@@ -82,6 +88,7 @@ def trigger_alert():
         "gif": gif_url,
         "audio": audio_url,
         "text": text,
+        "tts": tts,
         "width": width,
         "height": height,
         "fontFamily": fontFamily,
