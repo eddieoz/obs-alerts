@@ -36,13 +36,13 @@ def trigger_alert():
     audio_url = unquote_plus(request.args.get('audio', 'https://www.myinstants.com/media/sounds/mrbitcoin.mp3'))
     text = request.args.get('text', '')
     tts = request.args.get('tts', '')
-    width = request.args.get('width', '40%')
-    height = request.args.get('height', '40%')
+    width = request.args.get('width', '300px')
+    height = request.args.get('height', '400px')
     fontFamily = request.args.get('fontFamily', 'Arial')
     fontSize = request.args.get('fontSize', '30px')
     borderColor = request.args.get('borderColor', 'black')
-    borderWidth = request.args.get('borderWidth', '1px')  # Default to 1px if not provided
-    color = request.args.get('color', 'white')
+    borderWidth = request.args.get('borderWidth', '2px')  # Default to 1px if not provided
+    color = request.args.get('color', 'gold')
     duration = int(request.args.get('duration', 10000))  # Default to 10 seconds if not provided
 
     if request.method == 'POST':        
@@ -57,13 +57,13 @@ def trigger_alert():
         if 'amount' in data:
             option = random.randint(0,1)
             if option == 0:
-                gif_url = "https://cdn.zebedee.io/streamer/images/d095a7bb-3d92-4775-9107-6401f8c52417_satoshi-red-socks-craig-wright.gif"
+                gif_url = "https://media.tenor.com/kQwV6EPjwCcAAAAC/satoshi-red-socks-craig-wright.gif"
                 audio_url = unquote_plus('https://www.myinstants.com/media/sounds/cwisnotsatoshi.mp3')
-                width = '70%'
+                width = '300px'
             else:
                 gif_url = "https://media1.giphy.com/media/l49JMVDvP8D38LHwI/giphy.gif"
                 audio_url = unquote_plus('https://www.myinstants.com/media/sounds/mrbitcoin.mp3')
-                width = '40%'
+                width = '300px'
                 
             if 'comment' in data:
                 if data['comment'] != None:
@@ -72,7 +72,6 @@ def trigger_alert():
                         gif_url = "https://media3.giphy.com/media/NhWZxXB1zoMapS1jtN/giphy.gif"
                         audio_url = "https://www.myinstants.com/media/sounds/bitcoin-dono-mix.mp3"
                         tts = data['comment']
-                        width = '60%'
                     text = f"Você recebeu {amount} sats!\n{''.join(data['comment'])}"
                 else:
                     amount = int(data['amount']/1000)
