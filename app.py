@@ -34,7 +34,7 @@ def trigger_alert():
         return "Invalid API key"
     gif_url = request.args.get('gif', 'https://media0.giphy.com/media/vKHKDIdvxvN7vTAEOM/giphy.gif')
     audio_url = unquote_plus(request.args.get('audio', 'https://www.myinstants.com/media/sounds/mrbitcoin.mp3'))
-    text = request.args.get('text', 'Hey!')
+    text = request.args.get('text', '')
     tts = request.args.get('tts', '')
     width = request.args.get('width', '40%')
     height = request.args.get('height', '40%')
@@ -73,10 +73,10 @@ def trigger_alert():
                         audio_url = "https://www.myinstants.com/media/sounds/bitcoin-dono-mix.mp3"
                         tts = data['comment']
                         width = '60%'
-                    text = f"\nVocê recebeu {amount} sats!\n{''.join(data['comment'])}"
+                    text = f"Você recebeu {amount} sats!\n{''.join(data['comment'])}"
                 else:
                     amount = int(data['amount']/1000)
-                    text = f"\nVocê recebeu {amount} sats!"
+                    text = f"Você recebeu {amount} sats!"
             
         # gif_url = data['gif']
         # width = data['width']
@@ -92,7 +92,7 @@ def trigger_alert():
     alert_data = {
         "gif": gif_url,
         "audio": audio_url,
-        "text": text,
+        "text": '' if text == '' else f'\n{text}',
         "tts": '' if tts == '' else f"https://api.streamelements.com/kappa/v2/speech?voice=Vitoria&text={tts}",
         "width": width,
         "height": height,
