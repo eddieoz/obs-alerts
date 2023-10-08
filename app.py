@@ -72,6 +72,9 @@ def trigger_alert():
                         audio_url = "https://www.myinstants.com/media/sounds/bitcoin-dono-mix.mp3"
                         tts = f"https://api.streamelements.com/kappa/v2/speech?voice=Vitoria&text={data['comment']}"             
                     text = f"\nVocê recebeu {amount} sats!\n{''.join(data['comment'])}"
+                else:
+                    amount = int(data['amount']/1000)
+                    text = f"\nVocê recebeu {amount} sats!"
             
         # gif_url = data['gif']
         # width = data['width']
