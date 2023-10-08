@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 from flask_socketio import SocketIO
 from urllib.parse import unquote_plus
 import logging
@@ -14,6 +14,10 @@ app = Flask(__name__)
 socketio = SocketIO(app, async_mode='eventlet', cors_allowed_origins="*")
 
 @app.route('/')
+def redirect_to_home():
+    return redirect("https://eddieoz.com", code=302)
+
+@app.route('/obs_alerts')
 def index():
     """
     Renders the index.html template when the root URL is accessed.
