@@ -71,7 +71,7 @@ def trigger_alert():
                     if amount >= 2100:
                         gif_url = "https://media3.giphy.com/media/NhWZxXB1zoMapS1jtN/giphy.gif"
                         audio_url = "https://www.myinstants.com/media/sounds/bitcoin-dono-mix.mp3"
-                        tts = f"https://api.streamelements.com/kappa/v2/speech?voice=Vitoria&text={data['comment']}"
+                        tts = data['comment']
                         width = '60%'
                     text = f"\nVocê recebeu {amount} sats!\n{''.join(data['comment'])}"
                 else:
@@ -93,7 +93,7 @@ def trigger_alert():
         "gif": gif_url,
         "audio": audio_url,
         "text": text,
-        "tts": tts,
+        "tts": '' if tts == '' else f"https://api.streamelements.com/kappa/v2/speech?voice=Vitoria&text={tts}",
         "width": width,
         "height": height,
         "fontFamily": fontFamily,
