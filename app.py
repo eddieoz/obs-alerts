@@ -69,6 +69,7 @@ def trigger_alert():
                 if data['comment'] != None:
                     amount = int(data['amount']/1000)
                     if amount >= 2100:
+                        gif_url = "https://media3.giphy.com/media/NhWZxXB1zoMapS1jtN/giphy.gif"
                         audio_url = "https://www.myinstants.com/media/sounds/bitcoin-dono-mix.mp3"
                         tts = f"https://api.streamelements.com/kappa/v2/speech?voice=Vitoria&text={data['comment']}"             
                     text = f"\nVocê recebeu {amount} sats!\n{''.join(data['comment'])}"
