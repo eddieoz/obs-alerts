@@ -55,8 +55,9 @@ def trigger_alert():
         
         # Check if data['amount'] exists
         if 'amount' in data:
-            borderColor = 'gold'
-            borderWidth = '2'
+            color = 'gold'
+            borderColor = 'black'
+            borderWidth = '2px'
             option = random.randint(0,1)
             if option == 0:
                 gif_url = "https://media.tenor.com/kQwV6EPjwCcAAAAC/satoshi-red-socks-craig-wright.gif"
