@@ -4,6 +4,9 @@ from urllib.parse import unquote_plus
 import logging
 logging.basicConfig(level=logging.DEBUG)
 
+from threading import Lock, Timer
+lock = Lock()
+
 import json
 import random
 import os
@@ -59,6 +62,8 @@ def trigger_alert():
         
         # Check if data['amount'] exists
         if 'amount' in data:
+            # Create a new lock object        
+            
             color = 'gold'
             borderColor = 'black'
             borderWidth = '2px'
@@ -83,7 +88,7 @@ def trigger_alert():
                 else:
                     amount = int(data['amount']/1000)
                     text = f"Você recebeu {amount} sats!"
-            
+
         # gif_url = data['gif']
         # width = data['width']
         # height = data['height']
@@ -109,7 +114,14 @@ def trigger_alert():
         "color": color,
         "duration": duration
     }
-    socketio.emit('show_alert', alert_data)
+    lock.acquire(timeout=15)
+    try:
+        socketio.emit('show_alert', alert_data)
+    finally:
+            # Release the lock after x seconds
+            Timer(15, lock.release).start()  
+
+        
     return "Alert triggered"
 
 if __name__ == "__main__":
