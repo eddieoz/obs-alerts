@@ -57,13 +57,18 @@ def trigger_alert():
         data = request.json
         logging.debug(data)
         
+
         # LN Bits integration
         # Should have LNURLP working and register the callback URL
         
         # Check if data['amount'] exists
         if 'amount' in data:
+            logging.debug(f"Amount: {data.get('amount', '')}")
+            logging.debug(f"Message: {data.get('comment', '')}")
             # Create a new lock object        
-            
+
+            amount = int(data.get('amount', ''))
+
             color = 'gold'
             borderColor = 'black'
             borderWidth = '2px'
@@ -79,14 +84,14 @@ def trigger_alert():
                 
             if 'comment' in data:
                 if data['comment'] != None:
-                    amount = int(data['amount']/1000)
-                    if amount >= 2100:
+                    # amount = int(data['amount']/1000)
+                    if amount >= 1000:
                         gif_url = "https://media3.giphy.com/media/NhWZxXB1zoMapS1jtN/giphy.gif"
                         audio_url = "https://www.myinstants.com/media/sounds/bitcoin-dono-mix.mp3"
                         tts = data['comment']
                     text = f"Você recebeu {amount} sats!\n{''.join(data['comment'])}"
                 else:
-                    amount = int(data['amount']/1000)
+                    # amount = int(data['amount']/1000)
                     text = f"Você recebeu {amount} sats!"
 
         # gif_url = data['gif']
