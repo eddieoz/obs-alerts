@@ -94,6 +94,7 @@ def trigger_alert():
                     # amount = int(data['amount']/1000)
                     text = f"Você recebeu {amount} sats!"
 
+        ##
         # gif_url = data['gif']
         # width = data['width']
         # height = data['height']
